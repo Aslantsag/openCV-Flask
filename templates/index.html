@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detect Images</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container p-5">
+        <div class="mb-5">
+            <h1 class="text-center">Select Image</h1>
+        </div>
+        <form method="post" enctype="multipart/form-data">
+            <div class="row my-3">
+                <div class="col-lg-6">
+                    <input class="form-control input-lg" type="file" name="image" required>
+                </div>
+                <div class="col-lg-6">
+                    <select class="form-control input-lg" name="cmd" style="height: 48px;">
+                        <option value="face">Detect faces</option>
+                        <option value="eye">Detect eye</option>
+                        <option value="text">Detect text</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-success btn-lg">Send</button>
+        </form>
+        {% if filename %}
+        <div class="result w-50 m-auto my-3">
+            <img src="/static/{{ filename }}?v={{ range(1, 1000) | random }}" alt="result" width="100%" height="auto">
+        </div>
+        {% elif text %}
+        <div class="result my-5">
+            <p class="h2">{{ text }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
